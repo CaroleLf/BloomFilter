@@ -1,0 +1,13 @@
+Type,nombreAjouts,Valeurs
+ArrayList,100 , 0.050665
+ArrayList,1000 , 0.595867
+ArrayList,10000 , 6.57816
+ArrayList,100000 , 67.671599
+LinkedList,100 , 290.348014
+LinkedList,1000 , 2637.53345
+LinkedList,10000 , 24682.746222
+LinkedList,100000 , 236022.721407
+Array,100 , 0.065533
+Array,1000 , 0.879985
+Array,10000 , 3.843417
+Array,100000 , 22.667507
