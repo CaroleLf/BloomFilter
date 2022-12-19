@@ -1,9 +1,5 @@
 package BloomFilter;
 
-import java.util.ArrayList;
-
-import static java.util.Objects.hash;
-
 public class BloomArray implements IBloomFilter {
 
     private boolean[] array;
@@ -14,6 +10,11 @@ public class BloomArray implements IBloomFilter {
 
     private Hash myHash;
 
+    /**
+     * Constructor of array filter
+     * @param size
+     * @param numhash
+     */
     public BloomArray(int size,int numhash) {
         myHash = new Hash();
         this.size = size;
@@ -28,6 +29,9 @@ public class BloomArray implements IBloomFilter {
     }
 
     @Override
+    /**
+     * Method add the element in filter depending on the number of hash functions used
+     */
     public void add(String element) {
         switch (numHashFunctions) {
             case 1:
@@ -60,6 +64,9 @@ public class BloomArray implements IBloomFilter {
     }
 
     @Override
+    /**
+     * Method return the name of the Array
+     */
     public String getName() {
         return name;
     }
@@ -67,6 +74,9 @@ public class BloomArray implements IBloomFilter {
 
 
     @Override
+    /**
+     * Check if the elements is in the filter depending on the number of hash functions used
+     */
     public boolean contains(String element) {
         int nbhash = this.numHashFunctions;
         int hash = myHash.hash1(element, array.length);

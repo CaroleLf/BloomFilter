@@ -9,12 +9,15 @@ public class BloomArrayList implements IBloomFilter {
         private ArrayList<Boolean> array;
         private int size;
         private int numHashFunctions;
-
         private String name = "ArrayList";
         private Hash myHash;
 
 
-
+    /**
+     * Constructor ArrayList filter
+     * @param size
+     * @param nbHash
+     */
         public BloomArrayList(int size, int nbHash) {
             myHash = new Hash();
             this.size = size;
@@ -29,6 +32,9 @@ public class BloomArrayList implements IBloomFilter {
         }
 
         @Override
+        /**
+         * Method add the element in filter depending on the number of hash functions used
+         */
         public void add(String element) {
             switch (numHashFunctions) {
                 case 1:
@@ -67,6 +73,9 @@ public class BloomArrayList implements IBloomFilter {
     }
 
     @Override
+    /**
+     * Check if the elements is in the filter depending on the number of hash functions used
+     */
         public boolean contains(String element) {
                 int nbhash = this.numHashFunctions;
                 int hash = myHash.hash1(element,array.size());

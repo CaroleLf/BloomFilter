@@ -9,6 +9,13 @@ public class BloomLinkedList implements IBloomFilter {
 
     private final Hash myHash;
 
+
+    private final String name = "LinkedList";
+    /**
+     * Constructor of arrayFilter
+     * @param size
+     * @param hashFunct
+     */
     public BloomLinkedList(int size, int hashFunct) {
         myHash = new Hash();
         this.linkedList = new LinkedList<>();
@@ -20,6 +27,9 @@ public class BloomLinkedList implements IBloomFilter {
 
     }
 
+    /**
+     * Method add the element in filter depending on the number of hash functions used
+     */
     @Override
     public void add(String element) {
         switch (numHashFunctions) {
@@ -49,12 +59,19 @@ public class BloomLinkedList implements IBloomFilter {
         }
     }
 
+    /**
+     * Return the name of the filter
+     * @return name of the filter
+     */
     @Override
     public String getName() {
         String name = "LinkedList";
         return name;
     }
 
+    /**
+     * Check if the elements is in the filter depending on the number of hash functions used
+     */
     @Override
     public boolean contains(String element) {
         int nbhash = this.numHashFunctions;
@@ -80,6 +97,7 @@ public class BloomLinkedList implements IBloomFilter {
         }
         return true;
     }
+
 
 
 }
