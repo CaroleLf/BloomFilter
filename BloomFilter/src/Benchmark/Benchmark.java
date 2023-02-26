@@ -18,7 +18,6 @@ public class Benchmark {
     private static final BloomArrayList bloomArrayList = new BloomArrayList(1000000, 5);
     private static final BloomLinkedList LinkedList = new BloomLinkedList(1000000, 5);
     private static final BloomArray bloomArray = new BloomArray(1000000, 5);
-
     static BufferedWriter sortieFalsePositive;
     static BufferedWriter sortieQueryTime;
     static BufferedWriter sortieInsertTime;
@@ -28,32 +27,32 @@ public class Benchmark {
      * @throws IOException
      */
     public Benchmark() throws IOException {
-        File fileFalsePositive = new File("resultFalsePositive.csv");
-        File fileQueryTime = new File("resultQueryTime.csv");
-        File fileInsertTime = new File("resultInsertTime.csv");
-        delete(fileFalsePositive);
-        delete(fileQueryTime);
-        delete(fileInsertTime);
-        sortieQueryTime = new BufferedWriter(new FileWriter(fileQueryTime.getAbsoluteFile(), true));
-        sortieInsertTime= new BufferedWriter(new FileWriter(fileInsertTime.getAbsoluteFile(), true));
-        sortieFalsePositive = new BufferedWriter(new FileWriter(fileFalsePositive.getAbsoluteFile(), true));
+        File file_false_positive = new File("resultFalsePositive.csv");
+        File file_query_time = new File("resultQueryTime.csv");
+        File file_insert_time = new File("resultInsertTime.csv");
+        delete(file_false_positive);
+        delete(file_query_time);
+        delete(file_insert_time);
+        sortieQueryTime = new BufferedWriter(new FileWriter(file_query_time.getAbsoluteFile(), true));
+        sortieInsertTime= new BufferedWriter(new FileWriter(file_insert_time.getAbsoluteFile(), true));
+        sortieFalsePositive = new BufferedWriter(new FileWriter(file_false_positive.getAbsoluteFile(), true));
         sortieFalsePositive.append("k");
         sortieFalsePositive.append(',');
-        sortieFalsePositive.append("Valeurs");
+        sortieFalsePositive.append("Values");
         sortieFalsePositive.append(',');
         sortieFalsePositive.append("Percent");
         sortieFalsePositive.append("\n");
         sortieInsertTime.append("Type");
         sortieInsertTime.append(',');
-        sortieInsertTime.append("nombreAjouts");
+        sortieInsertTime.append("nb_add");
         sortieInsertTime.append(',');
-        sortieInsertTime.append("Valeurs");
+        sortieInsertTime.append("Values");
         sortieInsertTime.append("\n");
         sortieQueryTime.append("Type");
         sortieQueryTime.append(',');
-        sortieQueryTime.append("nombreAjouts");
+        sortieQueryTime.append("nb_add");
         sortieQueryTime.append(',');
-        sortieQueryTime.append("temps");
+        sortieQueryTime.append("Time");
         sortieQueryTime.append("\n");
     }
 
@@ -113,34 +112,34 @@ public class Benchmark {
      * rate in a file with the number of hash functions
      * used and the percentage added
      * @param k number hash functions
-     * @param valeurs rateFalsePositive
+     * @param values rateFalsePositive
      * @param percent percent added
      * @throws IOException
      */
-    private static void generateResultExcelFalsePositive( int k, double valeurs, double percent ) throws IOException {
-        sortieFalsePositive.write( k + " , " + valeurs +  " , "  + percent + "\n");
+    private static void generateResultExcelFalsePositive( int k, double values, double percent ) throws IOException {
+        sortieFalsePositive.write( k + " , " + values +  " , "  + percent + "\n");
 
     }
     /**
      * Method that measures the addition time for a certain number added     * @param type string of the type of bloom filter
-     * @param temps time for the Insertion
-     * @param nbAjouts number add in the filter
+     * @param time time for the Insertion
+     * @param nb_add number add in the filter
      * @throws IOException
      */
-    private static void generateResultExcelTime(String type, double temps, int nbAjouts) throws IOException {
-        sortieInsertTime.write( type + "," + nbAjouts  + " , " +temps/1000000 +  "\n");
+    private static void generateResultExcelTime(String type, double time, int nb_add) throws IOException {
+        sortieInsertTime.write( type + " , " + nb_add  + " , " +time/1000000 +  "\n");
     }
 
     /**
      * Method that measures the addition time for a certain number search in the filter
      ** @param type string of the type of bloom filter
-     * @param temps time for the Insertion
-     * @param nbAjouts number add in the filter
+     * @param time time for the Insertion
+     * @param nb_add number add in the filter
      * @throws IOException
      */
 
-    private static void generateResultExcelTimeQuery( String type,double temps, int nbAjouts) throws IOException {
-        sortieQueryTime.write( type + "," + nbAjouts  + " , " +temps/1000000 +  "\n");
+    private static void generateResultExcelTimeQuery( String type,double time, int nb_add) throws IOException {
+        sortieQueryTime.write( type + " , " + nb_add  + " , " + time/1000000 +  "\n");
     }
 
     /**
@@ -164,7 +163,7 @@ public class Benchmark {
             BloomArrayList array = new BloomArrayList(1000000, k);
             int numQueries = 100000;
             int numItems = (int) ((array.getSize() * percent) / 100);
-            System.out.println("Number of items added compared to " + array.getSize() + " to" + numItems  +" with k function : " + k);
+            System.out.println("Number of items added compared to " + array.getSize() + " to " + numItems  +" with k function : " + k);
             // Generate a random set of items to insert into the bloom filter
             Set<String> items = generateRandomItems(null, (int) numItems);
             // Insert the items into the bloom filter
@@ -190,11 +189,11 @@ public class Benchmark {
 
     /**
      * Generate a set of random string
-     * @param existant can be null or not, if not null the method look if the new generated string already exists in this set
+     * @param existing can be null or not, if not null the method look if the new generated string already exists in this set
      * @param numberQueries number of strings I have to add in the set
      * @return a set of random string
      */
-    private static Set<String> generateRandomItems(Set<String> existant,int numberQueries) {
+    private static Set<String> generateRandomItems(Set<String> existing,int numberQueries) {
         Random rand = new Random();
         HashSet<String> set = new HashSet<>();
             int j = 1;
@@ -204,8 +203,8 @@ public class Benchmark {
                     char c = (char)(rand.nextInt(26) + 97);
                     str.append(c);
                 }
-                if(existant!=null){
-                    if(!existant.contains(str.toString())) {
+                if(existing!=null){
+                    if(!existing.contains(str.toString())) {
                         set.add(str.toString());
                         j++;
 
@@ -264,7 +263,6 @@ public class Benchmark {
      * @param numItems number of items to test
      * @throws IOException
      */
-
     private static void measureQueryTimeList(String bloomFilName, int numItems) throws IOException {
             Set<String> items = generateRandomItems(null,numItems);
             long startTime = 0;
@@ -313,7 +311,6 @@ public class Benchmark {
         for (String item : items) {
             bloomArray.contains(item);
         }
-
         long endTime = System.nanoTime();
         long time =  endTime - startTime;
         generateResultExcelTimeQuery("Array", time,numItems);

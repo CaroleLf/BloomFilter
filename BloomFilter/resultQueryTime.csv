@@ -1,13 +1,13 @@
-Type,nombreAjouts,temps
-ArrayList,100 , 0.043692
-ArrayList,1000 , 0.46333
-ArrayList,10000 , 4.234523
-ArrayList,100000 , 38.441105
-LinkedList,100 , 134.849825
-LinkedList,1000 , 1250.894659
-LinkedList,10000 , 13499.500271
-LinkedList,100000 , 125625.594837
-Array,100 , 0.092694
-Array,1000 , 0.847313
-Array,10000 , 3.517563
-Array,100000 , 28.914916
+Type,nb_add,Time
+ArrayList,100 , 0.054753
+ArrayList,1000 , 0.532532
+ArrayList,10000 , 4.991086
+ArrayList,100000 , 47.655861
+LinkedList,100 , 86.196178
+LinkedList,1000 , 967.586669
+LinkedList,10000 , 9234.741008
+LinkedList,100000 , 95845.175842
+Array,100 , 0.0638
+Array,1000 , 0.587746
+Array,10000 , 2.865809
+Array,100000 , 22.196325
