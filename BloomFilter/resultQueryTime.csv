@@ -1,0 +1,13 @@
+Type,nombreAjouts,temps
+ArrayList,100 , 0.043692
+ArrayList,1000 , 0.46333
+ArrayList,10000 , 4.234523
+ArrayList,100000 , 38.441105
+LinkedList,100 , 134.849825
+LinkedList,1000 , 1250.894659
+LinkedList,10000 , 13499.500271
+LinkedList,100000 , 125625.594837
+Array,100 , 0.092694
+Array,1000 , 0.847313
+Array,10000 , 3.517563
+Array,100000 , 28.914916

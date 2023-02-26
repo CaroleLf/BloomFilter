@@ -15,7 +15,6 @@ import java.util.Set;
 
 public class Benchmark {
 
-
     private static final BloomArrayList bloomArrayList = new BloomArrayList(1000000, 5);
     private static final BloomLinkedList LinkedList = new BloomLinkedList(1000000, 5);
     private static final BloomArray bloomArray = new BloomArray(1000000, 5);
@@ -131,6 +130,7 @@ public class Benchmark {
     private static void generateResultExcelTime(String type, double temps, int nbAjouts) throws IOException {
         sortieInsertTime.write( type + "," + nbAjouts  + " , " +temps/1000000 +  "\n");
     }
+
     /**
      * Method that measures the addition time for a certain number search in the filter
      ** @param type string of the type of bloom filter
@@ -138,6 +138,7 @@ public class Benchmark {
      * @param nbAjouts number add in the filter
      * @throws IOException
      */
+
     private static void generateResultExcelTimeQuery( String type,double temps, int nbAjouts) throws IOException {
         sortieQueryTime.write( type + "," + nbAjouts  + " , " +temps/1000000 +  "\n");
     }
@@ -152,7 +153,6 @@ public class Benchmark {
             f.delete();
         }
     }
-
 
     /**
      * Method mesure the rate of falsePositive for an array List
@@ -179,7 +179,6 @@ public class Benchmark {
                     falsePositives++;
                 }
             }
-
             // Calculate the false positive rate
             double falsePositiveRate = ((double) falsePositives*100)  / numQueries;
             System.out.println("Percent added: " + percent);
@@ -320,6 +319,6 @@ public class Benchmark {
         generateResultExcelTimeQuery("Array", time,numItems);
         System.out.println("Contains time Array: " + time/1000000 + " ms for " + numItems + " items");
     }
-    }
+}
 
 

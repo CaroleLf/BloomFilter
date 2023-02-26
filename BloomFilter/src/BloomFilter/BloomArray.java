@@ -23,15 +23,13 @@ public class BloomArray implements IBloomFilter {
             array[i] = false;
         }
         numHashFunctions = numhash;
-
-
-
     }
 
-    @Override
+
     /**
      * Method add the element in filter depending on the number of hash functions used
      */
+    @Override
     public void add(String element) {
         switch (numHashFunctions) {
             case 1:
@@ -40,7 +38,6 @@ public class BloomArray implements IBloomFilter {
             case 2:
                 array[myHash.hash1(element, array.length)] = true;
                 array[myHash.hash2(element, array.length)] = true;
-
                 break;
             case 3:
                 array[myHash.hash1(element, array.length)] = true;
@@ -63,20 +60,22 @@ public class BloomArray implements IBloomFilter {
 
     }
 
-    @Override
+
     /**
      * Method return the name of the Array
      */
+    @Override
     public String getName() {
         return name;
     }
 
 
 
-    @Override
+
     /**
      * Check if the elements is in the filter depending on the number of hash functions used
      */
+    @Override
     public boolean contains(String element) {
         int nbhash = this.numHashFunctions;
         int hash = myHash.hash1(element, array.length);

@@ -9,7 +9,6 @@ public class BloomLinkedList implements IBloomFilter {
 
     private final Hash myHash;
 
-
     private final String name = "LinkedList";
     /**
      * Constructor of arrayFilter
